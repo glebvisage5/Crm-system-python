@@ -73,6 +73,13 @@ FastAPI автоматически генерирует полноценную O
 - ✅ Swagger UI: http://localhost:8000/docs (Интерактивная документация, можно пробовать запросы)
 - ✅ ReDoc: http://localhost:8000/redoc (Удобный вид для чтения)
 
+## 🖼️ Скриншоты интерфейсов
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4e969a6f-f109-4138-abed-ac57e93ba7b0" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5a1a3406-cca6-4357-a96e-506a87f7fdf4" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a4eae8f3-337a-460a-b9a8-219c4f90420d" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6bb8e4fe-a00a-4028-bfe2-bac226d4a150" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e9ad3315-2e71-40e9-9858-e8d484852cf0" />
+
 ## 📝 Примеры запросов
 ### 1. Получение JWT токена (регистрация)
 ```bash
