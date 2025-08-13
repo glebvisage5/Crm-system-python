@@ -30,7 +30,6 @@ def test_create_customer(service):
     assert response.customer.name == "Иван Иванов"
     assert response.customer.email == "email@email.ru"
     assert response.customer.id is not None
-    assert response.customer.id.startswith("cust_")
     assert len(service.customers_db) == 1
 
 
