@@ -26,7 +26,21 @@ class CustomerUpdate(BaseModel):
     name: str
     email: str
 
-app = FastAPI(title="CRM API", version="1.0", debug=True)
+app = FastAPI(
+    title="CRM API",
+    version="1.0",
+    description="Микросервисная CRM-система",
+    contact={
+        "name": "Глеб",
+        "telegram": "@Visage2",
+    },
+    license_info={
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT",
+    },
+    debug=True
+)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -62,7 +76,7 @@ def get_order_stub():
     channel = grpc.insecure_channel('order-service:50052')
     return crm_pb2_grpc.OrderServiceStub(channel)
 
-@app.post("/register")
+@app.post("/register", description="Регистрация пользователей в системе")
 def register(username: str = None):
     token = jwt.encode(
         {
@@ -74,7 +88,7 @@ def register(username: str = None):
     )
     return {"access_token": token, "token_type": "bearer"}
 
-@app.post("/login")
+@app.post("/login", description="Авторизация пользователей в системе")
 def login():
     token = jwt.encode(
         {
@@ -87,7 +101,7 @@ def login():
     return {"access_token": token, "token_type": "bearer"}
 
 
-@app.get("/customers", dependencies=[Depends(verify_token)])
+@app.get("/customers", dependencies=[Depends(verify_token)], description="Список клиентов в системе")
 def list_customers():
     stub = get_customer_stub()
     try:
@@ -106,7 +120,7 @@ def list_customers():
         raise HTTPException(status_code=500, detail=f"gRPC error: {e.details()}")
 
 
-@app.post("/customers", dependencies=[Depends(verify_token)])
+@app.post("/customers", dependencies=[Depends(verify_token)], description="Создание нового клиента в системе")
 def create_customer(customer: CustomerCreate):
     stub = get_customer_stub()
     request = crm_pb2.CreateCustomerRequest(name=customer.name, email=customer.email)
@@ -122,7 +136,7 @@ def create_customer(customer: CustomerCreate):
         raise HTTPException(status_code=500, detail=e.details())
     
 
-@app.put("/customers/{customer_id}", dependencies=[Depends(verify_token)])
+@app.put("/customers/{customer_id}", dependencies=[Depends(verify_token)], description="Обновление данных клиента в системе")
 def update_customer(customer_id: str, customer: CustomerUpdate):
     stub = get_customer_stub()
     request = crm_pb2.UpdateCustomerRequest(id=customer_id, name=customer.name, email=customer.email)
@@ -138,7 +152,7 @@ def update_customer(customer_id: str, customer: CustomerUpdate):
         raise HTTPException(status_code=500, detail=e.details())
     
 
-@app.delete("/customers/{customer_id}", dependencies=[Depends(verify_token)])
+@app.delete("/customers/{customer_id}", dependencies=[Depends(verify_token)], description="Удаление клиента из системы")
 def delete_customer(customer_id: str):
     stub = get_customer_stub()
     request = crm_pb2.DeleteCustomerRequest(id=customer_id)
@@ -149,7 +163,7 @@ def delete_customer(customer_id: str):
         raise HTTPException(status_code=500, detail=e.details())
     
 
-@app.post("/orders", dependencies=[Depends(verify_token)])
+@app.post("/orders", dependencies=[Depends(verify_token)], description="Создание нового заказа в системе")
 def create_order(order: OrderCreate):
     stub = get_customer_stub()
     try:
@@ -183,7 +197,7 @@ def create_order(order: OrderCreate):
         raise HTTPException(status_code=500, detail=e.details())
 
 
-@app.get("/orders/customer/{customer_id}", dependencies=[Depends(verify_token)])
+@app.get("/orders/customer/{customer_id}", dependencies=[Depends(verify_token)], description="Список заказов в системе")
 def get_orders_by_customer(customer_id: str):
     stub = get_order_stub()
     request = crm_pb2.GetCustomerOrdersRequest(customer_id=customer_id)
