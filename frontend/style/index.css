@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'GGSans', sans-serif;
+    src: url("../fonts/ggsans.ttf");
+}
+@font-face {
+    font-family: 'GGSans', sans-serif;
+    src: url("../fonts/ggsans.ttf") format('truetype');
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #E4E6FF;
+    font-family: "GGSans", sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh; 
+    width: 65.104vw;
+}
+
+h1 {
+    font-size: 5vw;
+    text-align: center;
+    margin-bottom: 1.042vw;
+    font-weight: 900;
+    color: #5865F2;
+}
+
+a{
+    color: #5865F2;
+    font-size: .833vw;
+    text-decoration: none;
+}
+header{
+    width: 41.667vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+nav{
+    display: flex;
+    font-size: .833vw;
+    font-weight: 500;
+    gap: 2.083vw;
+}
+main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.083vw;
+    gap: 2.083vw;
+    font-size: .938vw;
+}
+.customersList{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.042vw;
+}
+
+main input{
+    height: 3.125vw;
+    border-radius: .833vw;
+    border: .204vw solid #5865F2;
+    padding-left: .521vw;
+    padding-right: .521vw; 
+    font-size: .781vw;
+    font-weight: 600;
+    outline: none;
+}
+main form{
+    display: flex;
+    gap: 1.042vw;
+}
+main p{
+    font-size: .938vw;
+    font-weight: 600;
+}
+ul{
+    font-size: .833vw;
+}
+
+.button-auth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.042vw;
+}
+.button-auth button, .register button, main button {
+    width: 10.417vw;
+    height: 3.125vw;
+    border-radius: .833vw;
+    color: white;
+    background: #5865F2;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: .833vw;
+    font-weight: 600;
+    cursor: pointer;
+}
+.container, .container_login{
+    width: 20.833vw;
+    height: 15.417vw;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.342vw;
+    border-radius: 1.042vw;
+}
+.container_login{
+    height: 18.213vw;
+}
+.register{
+    display: flex;
+    flex-direction: column;
+    gap: .521vw;
+}
+.register input{
+    width: 10.417vw;
+    height: 3vw;
+    border-radius: .521vw;
+    outline: none;
+    padding-left: .521vw;
+    padding-right: .521vw; 
+    font-size: .781vw;
+    font-weight: 600; 
+    border: .204vw solid #5865F2;
+}

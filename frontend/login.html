@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Авторизация</h2>
+
+        <form class="register" onsubmit="login(); return false;">
+            <input type="text" id="username" placeholder="Имя" required>
+            <button type="submit">Войти (демо)</button>
+        </form>
+
+        <a href="register.html">Еще нет аккаунта?</a>
+
+        <p id="status"></p>
+    </div>
+
+    <script src="scripts/auth.js"></script>
+</body>
+</html>

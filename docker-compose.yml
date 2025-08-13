@@ -1,0 +1,77 @@
+services:
+  postgres-customers:
+    image: postgres:15
+    container_name: postgres-customers
+    environment:
+      POSTGRES_DB: customers_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./volumes/postgres-customer:/var/lib/postgresql/data
+    restart: unless-stopped
+  
+  postgres-orders:
+    image: postgres:15
+    container_name: postgres-orders
+    environment:
+      POSTGRES_DB: orders_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./volumes/postgres-order:/var/lib/postgresql/data
+    restart: unless-stopped
+    
+  customer-service:
+    build:
+      context: ./customer-service
+      dockerfile: Dockerfile
+    container_name: customer-service
+    ports:
+      - "50051:50051"
+    depends_on:
+      - postgres-customers
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://user:password@postgres-customers:5432/customers_db
+    restart: on-failure
+
+  order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    container_name: order-service
+    ports:
+      - "50052:50052"
+    depends_on:
+      - postgres-orders
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://user:password@postgres-orders:5432/orders_db
+    restart: on-failure
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - customer-service
+      - order-service
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  frontend:
+    image: nginx:alpine
+    container_name: crm-frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    restart: unless-stopped

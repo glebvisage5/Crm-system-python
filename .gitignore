@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+*.db
+node_modules/
+htmlcov/
+.pytest_cache/
+.dockerignore
+volumes/

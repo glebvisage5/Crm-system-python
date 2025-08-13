@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Заказы — CRM</title>
+    <link rel="stylesheet" href="style/index.css" />
+</head>
+<body>
+    <header>
+        <h1>CRM System</h1>
+        <nav>
+            <a href="customers.html">Клиенты</a>
+            <a href="orders.html" class="active">Заказы</a>
+            <a href="login.html" onclick="logout()">Выход</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Создать заказ</h2>
+        <form onsubmit="createOrder(); return false;">
+            <input type="text" id="customerId" placeholder="ID клиента" required />
+            <input type="text" id="productName" placeholder="Товар" required />
+            <input type="number" id="price" placeholder="Цена" step="0.01" required />
+            <button type="submit">Создать заказ</button>
+        </form>
+
+        <h3>Заказы клиента</h3>
+        <div>
+            <input type="text" id="ordersCustomerId" placeholder="ID клиента" />
+            <button onclick="getOrders()">Показать заказы</button>
+        </div>
+        <ul id="ordersList"></ul>
+    </main>
+
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/orders.js"></script>
+</body>
+</html>

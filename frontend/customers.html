@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Клиенты — CRM</title>
+    <link rel="stylesheet" href="style/index.css" />
+</head>
+<body>
+    <header>
+        <h1>CRM System</h1>
+        <nav>
+            <a href="customers.html" class="active">Клиенты</a>
+            <a href="orders.html">Заказы</a>
+            <a href="login.html" onclick="logout()">Выход</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Управление клиентами</h2>
+        <form onsubmit="createCustomer(); return false;">
+            <input type="text" id="name" placeholder="Имя" required />
+            <input type="email" id="email" placeholder="Email" required />
+            <button type="submit">Добавить клиента</button>
+        </form>
+
+        <p>Информация о клиенте: (id) имя (email)</p>
+        <ul id="customersList" class="customersList"></ul>
+    </main>
+
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/customers.js"></script>
+</body>
+</html>
